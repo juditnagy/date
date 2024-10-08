@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visszaszámláló</title>
+    <link rel="icon" type="image/x-icon" href="android-chrome-512x512.png">
+    <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+
+    body{
+       background-color: antiquewhite;
+
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    }
+
+
+        .timer{
+    grid-column: container-start / container-end;
+    text-align: center;
+    background-color: var(--color-quinary);
+        }
+   
+    h1{
+        font-family: "Open Sans", sans-serif;
+        font-size: 4rem;
+        font-weight: 300;
+        padding: 2rem 2rem 0rem 2rem;
+        margin-top: 3rem
+    }
+
+    #countdown{
+        padding: 2rem;
+        font-size: 3rem;
+    }
+
+    .time-section {
+        display: inline-block;
+        margin: 0 15px;
+        padding-top: 2rem;
+    }
+
+    
+
+    .time-value {
+        font-size: 48px;
+        display: block;
+    }
+    .time-label {
+        font-size: 1rem;
+    }
+
+    .uppercase{
+        text-transform: uppercase;
+    }
+
+    </style>
+</head>
+<body>
+    <section class="timer">
+        <h1>Már csak ennyit kell várnod:</h1>
+        <div id="countdown">
+        <div class="time-section">
+            <span class="time-value" id="days"></span>
+            <span class="time-label uppercase">Nap</span>
+        </div>
+        <div class="time-section">
+            <span class="time-value" id="hours"></span>
+            <span class="time-label uppercase">Óra</span>
+        </div>
+        <div class="time-section">
+            <span class="time-value" id="minutes"></span>
+            <span class="time-label uppercase">Perc</span>
+        </div>
+        <div class="time-section">
+            <span class="time-value" id="seconds"></span>
+            <span class="time-label uppercase">Másodperc</span>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+        // A cél dátuma: 2024. október 13. 18:00
+        const targetDate = new Date('October 13, 2024 18:00:00');
+        const currentDate = new Date();
+        
+        // Különbség kiszámítása milliszekundumban
+        const timeDifference = targetDate - currentDate;
+        
+        // Napok, órák, percek, másodpercek kiszámítása
+        const daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hoursLeft = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const secondsLeft = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
+        // Visszaszámláló frissítése a megfelelő span elemekben
+        document.getElementById('days').innerHTML = daysLeft;
+        document.getElementById('hours').innerHTML = hoursLeft;
+        document.getElementById('minutes').innerHTML = minutesLeft;
+        document.getElementById('seconds').innerHTML = secondsLeft;
+    }
+
+        // A visszaszámláló frissítése minden másodpercben
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
